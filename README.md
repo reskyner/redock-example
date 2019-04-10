@@ -31,15 +31,19 @@ ipython
 from preparation import *
 from docking import *
 
-ligand_files = prep_ligand(docking_dir='/code/example_data/NUDT5A-x0114_1/', ligand_sdf='NUDT5A-x0114_1.sdf') 
-protein_file = prep_protein(docking_dir='/code/example_data/NUDT5A-x0114_1/', protein_pdb='NUDT5A-x0114_1.pdb')
+ligand_files = prep_ligand(docking_dir='/code/example_data/NUDT5A-x0114_1/', 
+                           ligand_sdf='NUDT5A-x0114_1.sdf') 
+protein_file = prep_protein(docking_dir='/code/example_data/NUDT5A-x0114_1/', 
+                            protein_pdb='NUDT5A-x0114_1.pdb')
 
-prepare_vina_job(docking_dir='/code/example_data/NUDT5A-x0114_1/', prepared_receptor=protein_file,    prepared_ligand=ligand_files[0], vina_exe='/vina/autodock_vina_1_1_2_linux_x86/bin/vina', box_size=[35,35,35] job_fname='vina_new.sh', job_name='vina_test')
+prepare_vina_job(docking_dir='/code/example_data/NUDT5A-x0114_1/', 
+                 prepared_receptor=protein_file, prepared_ligand=ligand_files[0],
+                 vina_exe='/vina/autodock_vina_1_1_2_linux_x86/bin/vina', 
+                 box_size=[35,35,35] job_fname='vina_new.sh', job_name='vina_test')
 ```
 
 ## 7. run (or look at) the docking job you just generated
 
 ```
 /code/example_data/NUDT5A-x0114_1/vina_new.sh
-``
-
+```
