@@ -2,9 +2,11 @@ name: docking-example
 channels:
 - rdkit
 - anaconda
+- openbabel
 dependencies:
 - pip:
   - --editable=git+https://github.com/graik/biskit.git#egg=biskit
 - rdkit
 - ipython
+- openbabel
 

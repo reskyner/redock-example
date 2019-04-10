@@ -33,7 +33,7 @@ def prep_protein(docking_dir, protein_pdb):
     # use biskit to prepare the protein
     c = B.PDBCleaner(os.path.join(docking_dir, protein_pdb))
     c.process()
-    c.capTerminals(auto=True)
+    c.capTerminals(breaks=1, capC=[0], capN=[2])
     c.writePdb(str(protein_pdb).replace('.pdb', '_prepared.pdb'))
     # prot = proteinPrepare(mol)
     # prot.remove('resname WAT')
