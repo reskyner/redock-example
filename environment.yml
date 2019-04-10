@@ -1,9 +1,10 @@
 name: docking-example
 channels:
 - rdkit
-- acellera
-- psi4
+- anaconda
 dependencies:
-- python=3.6
+- pip:
+  - "--editable=git+https://github.com/graik/biskit.git#egg=biskit"
 - rdkit
-- htmd
+- ipython
+

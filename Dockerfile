@@ -1,6 +1,9 @@
 FROM continuumio/miniconda3
 SHELL ["/bin/bash", "-c"]
 
+RUN apt-get update
+RUN apt-get install -y libfontconfig1 libxrender1
+
 # get and install vina
 RUN mkdir vina
 WORKDIR /vina
