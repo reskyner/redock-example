@@ -1,7 +1,6 @@
 import os
 
 import openbabel
-# from htmd.ui import *
 import biskit as B
 
 
@@ -21,6 +20,7 @@ def obabel_conversion(input_file, ouput_type, options):
 
     # read input, convert, and write output
     obConv.ReadFile(mol, input_file)
+    mol.AddHydrogens()
     obConv.WriteFile(mol, input_file.replace(str('.' + ftype), str('.' + ouput_type)))
 
     # return name of the converted file
@@ -36,7 +36,7 @@ def prep_protein(docking_dir, protein_pdb):
     m = c.capTerminals(breaks=1, capC=[0], capN=[2])
     m.writePdb(str(protein_pdb).replace('.pdb', '_prepared.pdb'))
 
-    # set the new protein, and convert it with babel to pdbqt
+    # set the new protein, and convert it with babel to pdbqt (rigid for now)
     protein = os.path.join(docking_dir, str(protein_pdb).replace('.pdb', '_prepared.pdb'))
     converted_file = obabel_conversion(input_file=protein, ouput_type='pdbqt', options=['x', 'r'])
 
@@ -50,6 +50,6 @@ def prep_ligand(docking_dir, ligand_sdf):
     ligand = os.path.join(docking_dir, ligand_sdf)
     # convert to pdbqt, and then mol2
     conv1 = obabel_conversion(input_file=ligand, ouput_type='pdbqt', options=['h'])
-    converted_file = obabel_conversion(input_file=conv1, ouput_type='mol2', options=[])
+    converted_file = obabel_conversion(input_file=conv1, ouput_type='mol2', options=['h'])
 
     return conv1, converted_file
