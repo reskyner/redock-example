@@ -54,4 +54,4 @@ def prep_ligand(docking_dir, ligand_sdf):
     converted_file = obabel_conversion(input_file=conv1, ouput_type='mol2', options=[])
     # = obabel_conversion(input_file=conv2, ouput_type='mol2', options=[])
 
-    return converted_file
+    return conv1, converted_file
