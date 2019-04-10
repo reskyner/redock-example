@@ -1,7 +1,8 @@
 import os
 
 import openbabel
-from htmd.ui import *
+# from htmd.ui import *
+import biskit as B
 
 
 def obabel_conversion(input_file, ouput_type, options):
@@ -29,13 +30,16 @@ def obabel_conversion(input_file, ouput_type, options):
 def prep_protein(docking_dir, protein_pdb):
     # make sure we're in the directory where the docking will be done
     os.chdir(docking_dir)
-    # use HTMD to prepare the protein
-    mol = Molecule(protein_pdb)
-    prot = proteinPrepare(mol)
-    prot.remove('resname WAT')
+    # use biskit to prepare the protein
+    c = B.PDBCleaner(os.path.join(docking_dir, protein_pdb))
+    c.process()
+    c.capTerminals(auto=True)
+    c.writePdb(str(protein_pdb).replace('.pdb', '_prepared.pdb'))
+    # prot = proteinPrepare(mol)
+    # prot.remove('resname WAT')
 
     # write the prepared protein out to a new pdb file
-    prot.write(str(protein_pdb).replace('.pdb', '_prepared.pdb'))
+    # prot.write(str(protein_pdb).replace('.pdb', '_prepared.pdb'))
 
     # set the new protein, and convert it with babel to pdbqt
     protein = os.path.join(docking_dir, str(protein_pdb).replace('.pdb', '_prepared.pdb'))
