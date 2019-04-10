@@ -52,6 +52,5 @@ def prep_ligand(docking_dir, ligand_sdf):
     # convert to pdbqt, and then mol2
     conv1 = obabel_conversion(input_file=ligand, ouput_type='pdbqt', options=[])
     converted_file = obabel_conversion(input_file=conv1, ouput_type='mol2', options=[])
-    # = obabel_conversion(input_file=conv2, ouput_type='mol2', options=[])
 
     return conv1, converted_file
