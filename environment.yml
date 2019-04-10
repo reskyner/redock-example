@@ -1,0 +1,9 @@
+name: docking-example
+channels:
+- rdkit
+- acellera
+- psi4
+dependencies:
+- python=3.6
+- rdkit
+- htmd
