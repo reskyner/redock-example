@@ -1,31 +1,31 @@
 # Some example files and a first attempt at automated prep and docking
 
-## 1. Clone the repo, and cd into it
+***1. Clone the repo, and cd into it***
 
-## 2. Build the docker container
+***2. Build the docker container***
 
 ```
 docker build -t docking .
 ```
 
-## 3. Run the container
+***3. Run the container***
 
 ```
 docker run -it docking /bin/bash
 ```
 
-## 4. change to the code directory and source environment
+***4. change to the code directory and source environment***
 ```
 cd /code
 source activate docking-example
 ```
 
-## 5. start ipython
+***5. start ipython***
 ```
 ipython
 ```
 
-## 6. import the preparation and docking modules, and play with the example data. e.g.:
+***6. import the preparation and docking modules, and play with the example data. e.g.:***
 
 ```
 from preparation import *
