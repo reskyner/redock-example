@@ -33,13 +33,8 @@ def prep_protein(docking_dir, protein_pdb):
     # use biskit to prepare the protein
     c = B.PDBCleaner(os.path.join(docking_dir, protein_pdb))
     c.process()
-    c.capTerminals(breaks=1, capC=[0], capN=[2])
-    c.writePdb(str(protein_pdb).replace('.pdb', '_prepared.pdb'))
-    # prot = proteinPrepare(mol)
-    # prot.remove('resname WAT')
-
-    # write the prepared protein out to a new pdb file
-    # prot.write(str(protein_pdb).replace('.pdb', '_prepared.pdb'))
+    m = c.capTerminals(breaks=1, capC=[0], capN=[2])
+    m.writePdb(str(protein_pdb).replace('.pdb', '_prepared.pdb'))
 
     # set the new protein, and convert it with babel to pdbqt
     protein = os.path.join(docking_dir, str(protein_pdb).replace('.pdb', '_prepared.pdb'))
@@ -54,7 +49,7 @@ def prep_ligand(docking_dir, ligand_sdf):
     # set the full path of the ligand
     ligand = os.path.join(docking_dir, ligand_sdf)
     # convert to pdbqt, and then mol2
-    conv1 = obabel_conversion(input_file=ligand, ouput_type='pdbqt', options=[])
+    conv1 = obabel_conversion(input_file=ligand, ouput_type='pdbqt', options=['h'])
     converted_file = obabel_conversion(input_file=conv1, ouput_type='mol2', options=[])
 
     return conv1, converted_file
